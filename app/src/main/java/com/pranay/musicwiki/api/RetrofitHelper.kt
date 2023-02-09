@@ -1,34 +1,49 @@
 package com.pranay.musicwiki.api
 
+import com.pranay.musicwiki.util.Constants.Companion.API_KEY
 import com.pranay.musicwiki.util.Constants.Companion.BASE_URL
+import com.pranay.musicwiki.util.Constants.Companion.FORMAT
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-class RetrofitHelper {
+class RetrofitHelper(private val apiService: MusicServices) {
 
-    private val api: MusicServices
+    suspend fun getGenre() = apiService.getGenre(apiKey = API_KEY, format = FORMAT)
+    suspend fun getGenreDetails(tag: String) =
+        apiService.getGenreDetails(apiKey = API_KEY, format = FORMAT, tag = tag)
 
-    init {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(getUnsafeOkHttpClient())
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
+    suspend fun getTopAlbums(tag: String) =
+        apiService.getTopAlbums(apiKey = API_KEY, format = FORMAT, tag = tag)
 
-        api = retrofit.create(MusicServices::class.java)
-    }
+    suspend fun getTopArtists(tag: String) =
+        apiService.getTopArtists(apiKey = API_KEY, format = FORMAT, tag = tag)
 
+    suspend fun getTopTracks(tag: String) =
+        apiService.getTopTracks(apiKey = API_KEY, format = FORMAT, tag = tag)
 
-    private fun getUnsafeOkHttpClient(): OkHttpClient {
-        val builder = OkHttpClient.Builder()
+    suspend fun getAlbumDetails(artist: String, album: String) =
+        apiService.getAlbumDetails(apiKey = API_KEY, format = FORMAT, artist = artist, album = album)
 
-        builder
-            .connectTimeout(20, TimeUnit.SECONDS)
-            .readTimeout(20, TimeUnit.SECONDS)
-        return builder.build()
-    }
+    suspend fun getTopGenres(artist: String, album: String) =
+        apiService.getTopGenres(apiKey = API_KEY, format = FORMAT, artist = artist, album = album)
+
+    suspend fun getArtistDetails(artist: String) =
+        apiService.getArtistDetails(apiKey = API_KEY, format = FORMAT, artist = artist)
+
+    suspend fun getArtistTags(mbid: String) =
+        apiService.getArtistTags(apiKey = API_KEY, format = FORMAT, mbid = mbid)
+
+    suspend fun getArtistAlbums(mbid: String) =
+        apiService.getArtistAlbums(apiKey = API_KEY, format = FORMAT, mbid = mbid)
+
+    suspend fun getArtistTracks(mbid: String) =
+        apiService.getArtistTracks(apiKey = API_KEY, format = FORMAT, mbid = mbid)
+
+    suspend fun getArtistInfo(mbid: String) =
+        apiService.getArtistInfo(apiKey = API_KEY, format = FORMAT, mbid = mbid)
+
 
 }

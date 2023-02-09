@@ -1,94 +1,107 @@
 package com.pranay.musicwiki.api
 
-import com.pranay.musicwiki.model.AlbumApiResponse
-import com.pranay.musicwiki.model.AlbumDetailsApiResponse
-import com.pranay.musicwiki.model.ArtistApiResponse
-import com.pranay.musicwiki.model.ArtistDetailsApiResponse
-import com.pranay.musicwiki.model.ArtistTopAlbumsApiResponse
-import com.pranay.musicwiki.model.ArtistTopTracksApiResponse
-import com.pranay.musicwiki.model.TagDetailsApiResponse
-import com.pranay.musicwiki.model.TagsApiResponse
-import com.pranay.musicwiki.model.TrackApiResponse
 
+
+import com.pranay.musicwiki.model.album.AlbumDetails
+import com.pranay.musicwiki.model.artistTopAlbum.ArtistTopAlbums
+import com.pranay.musicwiki.model.artistTopTracks.ArtistTopTracks
+import com.pranay.musicwiki.model.artists.ArtistsDetails
+import com.pranay.musicwiki.model.genre.Genre
+import com.pranay.musicwiki.model.genreDetails.GenreDetails
+import com.pranay.musicwiki.model.topAlbum.TopAlbums
+import com.pranay.musicwiki.model.topArtist.TopArtists
+import com.pranay.musicwiki.model.topGenres.TopGenres
+import com.pranay.musicwiki.model.topTracks.TopTracks
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MusicServices {
 
-    @GET("2.0")
-   suspend fun getTagsApi(@Query("api_key") apikey: String,
-                   @Query("method") method: String,
-                   @Query("format") format: String
-    ): Response<TagsApiResponse>
+    @GET("?method=tag.getTopTags")
+    suspend fun getGenre(
+        @Query(value = "format") format: String,
+        @Query(value = "api_key") apiKey: String
+    ): Response<Genre>
 
+    @GET("?method=tag.getinfo")
+    suspend fun getGenreDetails(
+        @Query(value = "tag") tag: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<GenreDetails>
 
-    @GET("2.0")
-    suspend fun getTagsDetailsApi(@Query("api_key") apikey: String,
-                          @Query("method") method: String,
-                          @Query("format") format: String,
-                          @Query("tag") tag: String
+    @GET("?method=tag.gettopalbums")
+    suspend fun getTopAlbums(
+        @Query(value = "tag") tag: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<TopAlbums>
 
-    ): Response<TagDetailsApiResponse>
+    @GET("?method=tag.gettopartists")
+    suspend fun getTopArtists(
+        @Query(value = "tag") tag: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<TopArtists>
 
-    @GET("2.0")
-    suspend fun getAlbumApi(@Query("api_key") apikey: String,
-                    @Query("method") method: String,
-                    @Query("format") format: String,
-                    @Query("tag") tag: String
+    @GET("?method=tag.gettoptracks")
+    suspend fun getTopTracks(
+        @Query(value = "tag") tag: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<TopTracks>
 
-    ): Response<AlbumApiResponse>
+    @GET("?method=album.getinfo")
+    suspend fun getAlbumDetails(
+        @Query(value = "artist", encoded = true) artist: String,
+        @Query(value = "album", encoded = true) album: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<AlbumDetails>
 
-    @GET("2.0")
-    suspend fun getArtistApi(@Query("api_key") apikey: String,
-                     @Query("method") method: String,
-                     @Query("format") format: String,
-                     @Query("tag") tag: String
+    @GET("?method=album.gettoptags")
+    suspend fun getTopGenres(
+        @Query(value = "artist", encoded = true) artist: String,
+        @Query(value = "album", encoded = true) album: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<TopGenres>
 
-    ): Response<ArtistApiResponse>
+    @GET("?method=artist.getinfo")
+    suspend fun getArtistDetails(
+        @Query(value = "artist", encoded = true) artist: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<ArtistsDetails>
 
-    @GET("2.0")
-    suspend fun getTracksApi(@Query("api_key") apikey: String,
-                     @Query("method") method: String,
-                     @Query("format") format: String,
-                     @Query("tag") tag: String
+    @GET("?method=artist.getinfo")
+    suspend fun getArtistInfo(
+        @Query(value = "mbid") mbid: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<ArtistsDetails>
 
-    ): Response<TrackApiResponse>
+    @GET("?method=artist.getTopTags")
+    suspend fun getArtistTags(
+        @Query(value = "mbid") mbid: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<TopGenres>
 
-    @GET("2.0")
-    suspend fun getAlbumDetailsApi(@Query("api_key") apikey: String,
-                           @Query("method") method: String,
-                           @Query("format") format: String,
-                           @Query("artist") artist: String,
-                           @Query("album") album: String
+    @GET("?method=artist.getTopAlbums")
+    suspend fun getArtistAlbums(
+        @Query(value = "mbid") mbid: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<ArtistTopAlbums>
 
-
-    ): Response<AlbumDetailsApiResponse>
-
-    @GET("2.0")
-    suspend fun getArtistDetailsApi(@Query("api_key") apikey: String,
-                            @Query("method") method: String,
-                            @Query("format") format: String,
-                            @Query("artist") artist: String
-
-    ): Response<ArtistDetailsApiResponse>
-
-    @GET("2.0")
-    suspend fun getArtistTopAlbums(@Query("api_key") apikey: String,
-                           @Query("method") method: String,
-                           @Query("format") format: String,
-                           @Query("artist") artist: String
-
-    ): Response<ArtistTopAlbumsApiResponse>
-
-    @GET("2.0")
-    suspend fun getArtistTopTracks(@Query("api_key") apikey: String,
-                           @Query("method") method: String,
-                           @Query("format") format: String,
-                           @Query("artist") artist: String
-
-    ): Response<ArtistTopTracksApiResponse>
-
+    @GET("?method=artist.getTopTracks")
+    suspend fun getArtistTracks(
+        @Query(value = "mbid") mbid: String,
+        @Query(value = "api_key") apiKey: String,
+        @Query(value = "format") format: String
+    ): Response<ArtistTopTracks>
 
 
 
