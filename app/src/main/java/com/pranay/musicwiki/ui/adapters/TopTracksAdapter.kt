@@ -5,24 +5,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.news.musicwiki.Model.TopTracks.Track
-import com.news.musicwiki.R
-import kotlinx.android.synthetic.main.top_album_row.view.*
+import com.pranay.musicwiki.databinding.TopAlbumRowBinding
+import com.pranay.musicwiki.model.artistTopTracks.Track
+
 
 class TopTracksAdapter(private val tracks: ArrayList<Track>) :
-    RecyclerView.Adapter<TopTracksAdapter.DataViewHolder>() {
+    RecyclerView.Adapter<TopTracksAdapter.ViewHolder>() {
 
-    class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(val binding: TopAlbumRowBinding) : RecyclerView.ViewHolder(binding.root) {
         //Bind data to Views
         fun bind(track: Track) {
             itemView.apply {
-                album_name.text = track.name
-                artist_name.text = track.artist.name
-                Glide.with(top_album_image.context)
+                binding.albumName.text = track.name
+                binding.artistName.text = track.artist.name
+                Glide.with(binding.topAlbumImage.context)
                     .asBitmap()
                     .load(track.image[2].url)
-                    .placeholder(R.drawable.loading)
-                    .into(top_album_image)
+//                    .placeholder(R.drawable.loading)
+                    .into(binding.topAlbumImage)
                 itemView.setOnClickListener {
 
                 }
@@ -30,18 +30,17 @@ class TopTracksAdapter(private val tracks: ArrayList<Track>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        return DataViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.top_album_row, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = TopAlbumRowBinding.inflate(inflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return tracks.size
     }
 
-    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(tracks[position])
     }
 

@@ -7,27 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.news.musicwiki.Activities.ArtistDetails
-import com.news.musicwiki.Model.TopArtists.Artist
-import com.news.musicwiki.R
-import kotlinx.android.synthetic.main.top_album_row.view.*
+import com.pranay.musicwiki.databinding.TopAlbumRowBinding
+import com.pranay.musicwiki.model.topArtist.Artist
+import com.pranay.musicwiki.ui.ArtistDetailActivity
+
 
 class TopArtistsAdapter(private val artists: ArrayList<Artist>) :
-    RecyclerView.Adapter<TopArtistsAdapter.DataViewHolder>() {
+    RecyclerView.Adapter<TopArtistsAdapter.ViewHolder>() {
 
-    class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(val binding: TopAlbumRowBinding) : RecyclerView.ViewHolder(binding.root) {
         //Bind data to Views
         fun bind(artist: Artist) {
             itemView.apply {
-                album_name.visibility = View.GONE
-                artist_name.text = artist.name
-                Glide.with(top_album_image.context)
+                binding.albumName.visibility = View.GONE
+                binding.artistName.text = artist.name
+                Glide.with(binding.topAlbumImage.context)
                     .asBitmap()
                     .load(artist.image[2].url)
-                    .placeholder(R.drawable.loading)
-                    .into(top_album_image)
+//                    .placeholder(R.drawable.loading)
+                    .into(binding.topAlbumImage)
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, ArtistDetails::class.java)
+                    val intent = Intent(itemView.context, ArtistDetailActivity::class.java)
                     Log.e("MBID in ADAPTER",artist.mbid)
                     intent.putExtra("mbid", artist.mbid)
                     itemView.context.startActivity(intent)
@@ -36,18 +36,17 @@ class TopArtistsAdapter(private val artists: ArrayList<Artist>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        return DataViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.top_album_row, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = TopAlbumRowBinding.inflate(inflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
         return artists.size
     }
 
-    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(artists[position])
     }
 
