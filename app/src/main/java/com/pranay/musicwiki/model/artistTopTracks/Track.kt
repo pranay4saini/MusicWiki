@@ -1,6 +1,7 @@
 package com.pranay.musicwiki.model.artistTopTracks
 
-data class Track( val artist: Artist,
+data class Track(
+                val artist: Artist,
              val image: List<Image>,
              val listeners: String,
              val mbid: String,

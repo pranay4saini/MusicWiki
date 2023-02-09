@@ -1,4 +1,4 @@
-package com.pranay.musicwiki.ui
+package com.pranay.musicwiki.ui.activities
 
 import android.os.Bundle
 import android.util.Log

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.pranay.musicwiki.databinding.TopAlbumRowBinding
 import com.pranay.musicwiki.model.topArtist.Artist
-import com.pranay.musicwiki.ui.ArtistDetailActivity
+import com.pranay.musicwiki.ui.activities.ArtistDetailActivity
 
 
 class TopArtistsAdapter(private val artists: ArrayList<Artist>) :

@@ -15,17 +15,15 @@
         android:theme="@style/Theme.MusicWiki"
         tools:targetApi="31" >
         <activity
-            android:name=".ui.TagDetails"
-            android:exported="false" />
+            android:name=".ui.activities.GenreActivity"
+            />
         <activity
-            android:name=".ui.ArtistDetailActivity"
-            android:exported="false" />
+            android:name=".ui.activities.ArtistDetailActivity"
+             />
         <activity
-            android:name=".ui.AlbumDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MainActivity"
-            android:exported="true" >
+            android:name=".ui.activities.AlbumDetails" />
+        <activity android:name=".ui.activities.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

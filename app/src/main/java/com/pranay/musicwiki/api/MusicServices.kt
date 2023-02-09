@@ -9,7 +9,8 @@ import com.pranay.musicwiki.model.artists.ArtistsDetails
 import com.pranay.musicwiki.model.genre.Genre
 import com.pranay.musicwiki.model.genreDetails.GenreDetails
 import com.pranay.musicwiki.model.topAlbum.TopAlbums
-import com.pranay.musicwiki.model.topArtist.TopArtists
+import com.pranay.musicwiki.model.topArtist.TopArtist
+
 import com.pranay.musicwiki.model.topGenres.TopGenres
 import com.pranay.musicwiki.model.topTracks.TopTracks
 import retrofit2.Response
@@ -43,7 +44,7 @@ interface MusicServices {
         @Query(value = "tag") tag: String,
         @Query(value = "api_key") apiKey: String,
         @Query(value = "format") format: String
-    ): Response<TopArtists>
+    ): Response<TopArtist>
 
     @GET("?method=tag.gettoptracks")
     suspend fun getTopTracks(

@@ -1,4 +1,4 @@
-package com.pranay.musicwiki.ui
+package com.pranay.musicwiki.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

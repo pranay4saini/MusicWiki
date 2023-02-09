@@ -1,12 +1,8 @@
 package com.pranay.musicwiki.api
 
 import com.pranay.musicwiki.util.Constants.Companion.API_KEY
-import com.pranay.musicwiki.util.Constants.Companion.BASE_URL
+
 import com.pranay.musicwiki.util.Constants.Companion.FORMAT
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.concurrent.TimeUnit
 
 
 class RetrofitHelper(private val apiService: MusicServices) {

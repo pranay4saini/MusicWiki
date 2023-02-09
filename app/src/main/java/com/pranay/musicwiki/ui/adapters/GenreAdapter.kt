@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pranay.musicwiki.databinding.ItemGenreRowBinding
 
 import com.pranay.musicwiki.model.genre.Tag
-import com.pranay.musicwiki.ui.GenreActivity
+import com.pranay.musicwiki.ui.activities.GenreActivity
 
 class GenreAdapter(private val genres: ArrayList<Tag>, private val count: Int) :
     RecyclerView.Adapter<GenreAdapter.ViewHolder>() {

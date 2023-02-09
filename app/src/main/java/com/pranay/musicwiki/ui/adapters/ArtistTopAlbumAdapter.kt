@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.pranay.musicwiki.databinding.TopAlbumRowBinding
 import com.pranay.musicwiki.model.artistTopAlbum.Album
-import com.pranay.musicwiki.ui.AlbumDetails
+import com.pranay.musicwiki.ui.activities.AlbumDetails
 
 class ArtistTopAlbumAdapter(private val albums:ArrayList<Album>):RecyclerView.Adapter<ArtistTopAlbumAdapter.ViewHolder>() {
     class ViewHolder(val binding:TopAlbumRowBinding): RecyclerView.ViewHolder(binding.root) {

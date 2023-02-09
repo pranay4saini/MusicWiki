@@ -1,20 +1,19 @@
 package com.news.musicwiki.Utils.Adapters
 
 import android.view.LayoutInflater
-import android.view.View
+
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.pranay.musicwiki.databinding.TopAlbumRowBinding
-import com.pranay.musicwiki.model.artistTopTracks.Track
 
 
-class TopTracksAdapter(private val tracks: ArrayList<Track>) :
+class TopTracksAdapter(private val tracks: ArrayList<com.pranay.musicwiki.model.topTracks.Track>) :
     RecyclerView.Adapter<TopTracksAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: TopAlbumRowBinding) : RecyclerView.ViewHolder(binding.root) {
         //Bind data to Views
-        fun bind(track: Track) {
+        fun bind(track: com.pranay.musicwiki.model.topTracks.Track) {
             itemView.apply {
                 binding.albumName.text = track.name
                 binding.artistName.text = track.artist.name
@@ -45,10 +44,12 @@ class TopTracksAdapter(private val tracks: ArrayList<Track>) :
     }
 
     //Function to add genre to ArrayList of genre
-    fun addTopTracks(topTracks: List<Track>) {
+    fun addTopTracks(topTracks: List<com.pranay.musicwiki.model.topTracks.Track>) {
         this.tracks.apply {
             clear()
             addAll(topTracks)
         }
     }
+
+
 }

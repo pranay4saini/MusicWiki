@@ -1,4 +1,4 @@
-package com.pranay.musicwiki.ui
+package com.pranay.musicwiki.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,11 +11,13 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pranay.musicwiki.api.RetrofitBuilder
 import com.pranay.musicwiki.api.RetrofitHelper
-import com.pranay.musicwiki.databinding.ActivityAlbumDetailsBinding
 import com.pranay.musicwiki.databinding.ActivityGenreDetailsBinding
 import com.pranay.musicwiki.model.genreDetails.GenreDetails
 import com.pranay.musicwiki.model.genreDetails.GenreDetailsTags
 import com.pranay.musicwiki.model.genreDetails.Wiki
+import com.pranay.musicwiki.ui.fragments.AlbumsFragment
+import com.pranay.musicwiki.ui.fragments.ArtistsFragment
+import com.pranay.musicwiki.ui.fragments.TracksFragment
 import com.pranay.musicwiki.util.Status
 import com.pranay.musicwiki.viewModel.MusicViewModel
 import com.pranay.musicwiki.viewModel.MusicViewModelProviderFactory
