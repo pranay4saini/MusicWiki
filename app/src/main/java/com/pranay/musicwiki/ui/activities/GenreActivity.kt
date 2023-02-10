@@ -109,8 +109,7 @@ class GenreActivity : AppCompatActivity() {
     private fun setupViewModel() {
         viewModel =  ViewModelProvider(this,
             MusicViewModelProviderFactory(RetrofitHelper(RetrofitBuilder.apiService))
-        )
-            .get(MusicViewModel::class.java)
+        ).get(MusicViewModel::class.java)
     }
 
     //Setup Observers

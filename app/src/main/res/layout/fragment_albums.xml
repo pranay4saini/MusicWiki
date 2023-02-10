@@ -31,5 +31,24 @@
             android:text="Sorry, some network error occurred please try again"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
+        <LinearLayout
+            android:id="@+id/loading_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationLoading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:lottie_url="https://assets5.lottiefiles.com/packages/lf20_usmfx6bp.json"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
