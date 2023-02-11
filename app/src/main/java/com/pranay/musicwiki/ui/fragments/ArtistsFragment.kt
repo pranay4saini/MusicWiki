@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.news.musicwiki.Utils.Adapters.TopArtistsAdapter
 
-import com.pranay.musicwiki.R
+
 import com.pranay.musicwiki.api.RetrofitBuilder
 import com.pranay.musicwiki.api.RetrofitHelper
 
@@ -25,11 +25,7 @@ import com.pranay.musicwiki.viewModel.MusicViewModel
 import com.pranay.musicwiki.viewModel.MusicViewModelProviderFactory
 import retrofit2.Response
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ArtistsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ArtistsFragment : Fragment() {
     //Late initialize views
     private lateinit var binding: FragmentArtistsBinding
@@ -58,6 +54,7 @@ class ArtistsFragment : Fragment() {
             if (topArtistsAdapter.itemCount > 0)
                 recyclerView.adapter = null
         }
+
         initViews()
         setupUI()
         setupViewModel()
@@ -86,8 +83,7 @@ class ArtistsFragment : Fragment() {
     private fun setupViewModel() {
         viewModel =  ViewModelProvider(this,
             MusicViewModelProviderFactory(RetrofitHelper(RetrofitBuilder.apiService))
-        )
-            .get(MusicViewModel::class.java)
+        ).get(MusicViewModel::class.java)
     }
 
     //Setup Observers
@@ -136,6 +132,7 @@ class ArtistsFragment : Fragment() {
 
     //Initialize recyclerView
     private fun initViews() {
-        recyclerView = requireView().findViewById(R.id.recycleView)
+
+        recyclerView = binding.recycleView
     }
 }
