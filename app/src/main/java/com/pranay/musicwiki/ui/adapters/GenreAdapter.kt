@@ -41,7 +41,12 @@ class GenreAdapter(private val genres: ArrayList<Tag>, private val count: Int) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(genres[position])
+        val item = genres.getOrNull(position)
+        item?.let {
+            // Bind your data here
+            holder.bind(genres[position])
+        }
+
     }
 
     //Function to add genre to ArrayList of genre
